@@ -138,8 +138,8 @@ src/
 ### 1. Clone & install
 
 ```bash
-git clone <repo-url>
-cd devops-discovery-platform-saas
+git clone https://github.com/code-and-secure/Devops-Discovery-Platform.git
+cd Devops-Discovery-Platform
 npm install
 ```
 
