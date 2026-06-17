@@ -69,10 +69,12 @@ export function ResourceCard({ resource }: { resource: Resource }) {
         </div>
       </div>
       
-      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
-        <Link href={resourceHref} target="_blank" className="flex items-center gap-2">
-          {resource.title}
-          {resource.type === 'video' ? <PlayCircle className="w-4 h-4 text-red-500" /> : <ExternalLink className="w-4 h-4" />}
+      <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
+        <Link href={resourceHref} target="_blank" className="flex items-start gap-2">
+          <span className="line-clamp-2 break-words min-w-0">{resource.title}</span>
+          <span className="shrink-0 mt-0.5">
+            {resource.type === 'video' ? <PlayCircle className="w-4 h-4 text-red-500" /> : <ExternalLink className="w-4 h-4" />}
+          </span>
         </Link>
       </h3>
       
