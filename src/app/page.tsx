@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import { resources, categories as categoriesTable } from "@/db/schema";
 import { ResourceCard } from "@/components/resource-card";
-import { Search, Compass, Zap, TrendingUp, Layers, BookOpen, Video, FileText, GitBranch } from "lucide-react";
+import { Search, Compass, Zap, TrendingUp, Flame, Layers, BookOpen, Video, FileText, GitBranch } from "lucide-react";
 import { eq, ilike, or, desc } from "drizzle-orm";
 import Link from "next/link";
 import { searchExternalSources } from "@/lib/aggregator";
@@ -10,6 +10,7 @@ import { syncFreshData } from "@/lib/data-sync";
 import { TickerBar } from "@/components/ticker-bar";
 import { NewsletterForm } from "@/components/newsletter-form";
 import { SiteHeader } from "@/components/site-header";
+import { StatsCounter } from "@/components/stats-counter";
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +32,7 @@ export default async function HomePage({
   await ensureSeeded();
   syncFreshData(); // fire-and-forget: fetches Dev.to + GitHub in background, doesn't block page
   const categories = await db.select().from(categoriesTable);
+  const trending = await db.select().from(resources).orderBy(desc(resources.upvotes)).limit(5);
 
   let results;
   let externalResults: any[] = [];
@@ -110,21 +112,9 @@ export default async function HomePage({
           </div>
         </section>
 
-        {/* Stats strip */}
+        {/* Stats strip — animated counters */}
         {!query && !category && !type && (
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
-            {[
-              { label: "Resources", value: "10,000+" },
-              { label: "Categories", value: String(categories.length) },
-              { label: "Platforms", value: "50+" },
-              { label: "Engineers", value: "50K+" },
-            ].map((s) => (
-              <div key={s.label} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-center shadow-sm">
-                <p className="text-2xl font-black text-blue-600 dark:text-blue-400">{s.value}</p>
-                <p className="text-xs text-slate-500 mt-0.5">{s.label}</p>
-              </div>
-            ))}
-          </div>
+          <StatsCounter categoryCount={categories.length} />
         )}
 
         {/* Type filter pills */}
@@ -191,6 +181,42 @@ export default async function HomePage({
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {featured.map((res) => (
                 <ResourceCard key={res.id} resource={res} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Trending — top 5 by upvotes, only on default view */}
+        {!query && !category && !type && trending.length > 0 && (
+          <section className="mb-12">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="flex items-center gap-1.5 bg-orange-50 dark:bg-orange-950/30 text-orange-700 dark:text-orange-400 text-xs font-bold px-3 py-1 rounded-full border border-orange-200 dark:border-orange-800">
+                <Flame className="w-3.5 h-3.5 fill-orange-500" />
+                Trending Right Now
+              </span>
+            </div>
+            <div className="flex flex-col gap-2">
+              {trending.map((res, i) => (
+                <Link
+                  key={res.id}
+                  href={`/resources/${res.id}`}
+                  target="_blank"
+                  className="flex items-center gap-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-3 hover:border-orange-300 dark:hover:border-orange-700 hover:shadow-md transition-all group"
+                >
+                  <span className="text-2xl font-black text-slate-200 dark:text-slate-700 w-6 shrink-0 text-center select-none">
+                    {i + 1}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-slate-900 dark:text-white truncate group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                      {res.title}
+                    </p>
+                    <p className="text-xs text-slate-400 truncate">{res.category} · {res.type}</p>
+                  </div>
+                  <div className="flex items-center gap-1 shrink-0 text-xs font-bold text-orange-500">
+                    <TrendingUp className="w-3.5 h-3.5" />
+                    {(res.upvotes ?? 0).toLocaleString()}
+                  </div>
+                </Link>
               ))}
             </div>
           </section>

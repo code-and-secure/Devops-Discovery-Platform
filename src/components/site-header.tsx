@@ -3,6 +3,7 @@ import { Compass, Command as GitHubIcon } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { getSession } from "@/lib/auth";
 import { UserDropdown } from "@/components/user-dropdown";
+import { MobileNav } from "@/components/mobile-nav";
 
 interface SiteHeaderProps {
   activePage?: "explore" | "roadmaps" | "news";
@@ -49,7 +50,7 @@ export async function SiteHeader({ activePage }: SiteHeaderProps) {
             href="https://github.com/code-and-secure?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors p-2"
+            className="hidden sm:flex text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors p-2"
           >
             <GitHubIcon className="w-5 h-5" />
           </a>
@@ -64,11 +65,13 @@ export async function SiteHeader({ activePage }: SiteHeaderProps) {
           ) : (
             <Link
               href="/login"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20 active:scale-95 transition-all"
+              className="hidden sm:block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20 active:scale-95 transition-all"
             >
               Sign In
             </Link>
           )}
+
+          <MobileNav activePage={activePage} />
         </div>
       </div>
     </header>
