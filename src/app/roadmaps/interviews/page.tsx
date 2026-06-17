@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Compass, Command as GitHubIcon, ExternalLink, MessageSquare, ChevronRight } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Compass, ExternalLink, MessageSquare, ChevronRight } from "lucide-react";
 import { TickerBar } from "@/components/ticker-bar";
+import { SiteHeader } from "@/components/site-header";
 
 export const dynamic = "force-dynamic";
 
@@ -298,29 +298,7 @@ export default async function InterviewsPage({
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-7xl">
-          <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tighter text-blue-600 dark:text-blue-400 group">
-            <Compass className="w-7 h-7 group-hover:rotate-45 transition-transform duration-500" />
-            <span>Stack<span className="text-slate-900 dark:text-white">Lens</span></span>
-          </Link>
-          <nav className="hidden md:flex items-center gap-6">
-            <Link href="/" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors">Explore</Link>
-            <Link href="/roadmaps" className="text-sm font-medium text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 pb-0.5">Roadmaps</Link>
-            <Link href="/news" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors">News</Link>
-          </nav>
-          <div className="flex items-center gap-2 sm:gap-3">
-            <a href="https://github.com/code-and-secure?tab=repositories" target="_blank" className="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors p-2">
-              <GitHubIcon className="w-5 h-5" />
-            </a>
-            <ThemeToggle />
-            <Link href="/login" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20 active:scale-95 transition-all">
-              Sign In
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteHeader activePage="roadmaps" />
 
       <SubNav />
       <TickerBar />

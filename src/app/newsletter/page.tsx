@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { Compass, Mail, Zap, ArrowLeft, Check } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Command as GitHubIcon } from "lucide-react";
+import { Mail, Zap, ArrowLeft, Check } from "lucide-react";
 import { NewsletterForm } from "@/components/newsletter-form";
+import { SiteHeader } from "@/components/site-header";
 
 const TOPICS = [
   { label: "DevOps & CI/CD", color: "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300" },
@@ -23,24 +22,7 @@ const PERKS = [
 export default function NewsletterPage() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-7xl">
-          <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tighter text-blue-600 dark:text-blue-400 group">
-            <Compass className="w-7 h-7 group-hover:rotate-45 transition-transform duration-500" />
-            <span>Stack<span className="text-slate-900 dark:text-white">Lens</span></span>
-          </Link>
-          <div className="flex items-center gap-2">
-            <a href="https://github.com/code-and-secure?tab=repositories" target="_blank" className="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors p-2">
-              <GitHubIcon className="w-5 h-5" />
-            </a>
-            <ThemeToggle />
-            <Link href="/login" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20 active:scale-95 transition-all">
-              Sign In
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="flex-1 container mx-auto px-4 py-14 max-w-5xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

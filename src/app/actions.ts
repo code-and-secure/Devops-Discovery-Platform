@@ -1,11 +1,11 @@
 "use server";
 
 import { db } from "@/db";
-import { resources, newsletterSubscribers, users } from "@/db/schema";
+import { resources, newsletterSubscribers, users, sessions } from "@/db/schema";
 import { eq, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { hashPassword, verifyPassword, generateToken, createSession } from "@/lib/auth";
+import { hashPassword, verifyPassword, generateToken, createSession, getSession, deleteSession } from "@/lib/auth";
 import { sendVerificationEmail } from "@/lib/email";
 
 export async function upvoteResource(id: number) {
@@ -106,6 +106,43 @@ export async function verifyEmailAction(token: string): Promise<AuthState> {
     .where(eq(users.id, user.id));
 
   return { success: true, message: "Email verified! You can now sign in." };
+}
+
+export async function signoutAction() {
+  await deleteSession();
+  redirect("/");
+}
+
+export async function deleteAccountAction(): Promise<AuthState> {
+  const user = await getSession();
+  if (!user) return { success: false, message: "Not authenticated." };
+
+  // Delete all sessions then the user
+  await db.delete(sessions).where(eq(sessions.userId, user.id));
+  await db.delete(users).where(eq(users.id, user.id));
+  await deleteSession();
+  redirect("/");
+}
+
+export async function updateProfileAction(
+  _prev: AuthState,
+  formData: FormData
+): Promise<AuthState> {
+  const user = await getSession();
+  if (!user) return { success: false, message: "Not authenticated." };
+
+  const firstName = (formData.get("firstName") as string)?.trim();
+  const lastName  = (formData.get("lastName")  as string)?.trim();
+
+  if (!firstName) return { success: false, message: "First name is required." };
+
+  await db
+    .update(users)
+    .set({ firstName, lastName: lastName || null })
+    .where(eq(users.id, user.id));
+
+  revalidatePath("/account");
+  return { success: true, message: "Profile updated successfully." };
 }
 
 export async function subscribeNewsletter(

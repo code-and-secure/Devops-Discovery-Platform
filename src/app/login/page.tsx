@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Compass, CheckCircle } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { CheckCircle } from "lucide-react";
 import { SigninForm } from "@/components/auth/signin-form";
+import { SiteHeader } from "@/components/site-header";
 
 export default async function LoginPage({
   searchParams,
@@ -12,21 +12,7 @@ export default async function LoginPage({
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col">
-      <header className="px-4 py-4 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
-        <div className="container mx-auto max-w-6xl flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-xl font-black text-blue-600 tracking-tight group">
-            <Compass className="w-7 h-7 group-hover:rotate-45 transition-transform duration-500" />
-            <span>Stack<span className="text-slate-900 dark:text-white">Lens</span></span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <p className="text-sm text-slate-500 dark:text-slate-400 hidden sm:block">
-              Don&apos;t have an account?{" "}
-              <Link href="/signup" className="text-blue-600 font-semibold hover:underline">Sign Up</Link>
-            </p>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="flex-1 flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-md">
