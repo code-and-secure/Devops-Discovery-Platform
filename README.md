@@ -253,6 +253,28 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ---
 
+## Deployment
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for full step-by-step instructions covering:
+- Local development setup
+- AWS Lightsail (current production)
+- DigitalOcean Droplet
+- Google Cloud Run
+- Azure App Service
+- Nginx, HTTPS/SSL, PM2, and troubleshooting
+
+## Security
+
+See [SECURITY.md](SECURITY.md) for the vulnerability reporting policy and
+responsible disclosure process.
+
+To report a security issue: **khaliquezeeshan@gmail.com**
+
 ## License
 
-MIT
+Copyright (c) 2026 Zeeshan Khaliq. All Rights Reserved.
+
+This software is proprietary. Viewing the source code is permitted for
+evaluation purposes only. Copying, modifying, distributing, or deploying
+this software without explicit written permission from the owner is strictly
+prohibited. See [LICENSE](LICENSE) for full terms.
