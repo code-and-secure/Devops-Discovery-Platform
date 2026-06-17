@@ -47,16 +47,14 @@ export function ResourceCard({ resource }: { resource: Resource }) {
 
   return (
     <div className="perspective-1000 h-full">
-      <motion.div 
-        whileHover={{ 
-          y: -12, 
-          rotateX: 4, 
+      <motion.div
+        whileHover={{
+          y: -12,
+          rotateX: 4,
           rotateY: -4,
           boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)"
         }}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        initial={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 200, damping: 25 }}
         className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 flex flex-col h-full group preserve-3d cursor-pointer shadow-sm"
       >
