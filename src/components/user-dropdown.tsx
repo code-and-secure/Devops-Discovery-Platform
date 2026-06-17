@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { User, Settings, LogOut, ChevronDown } from "lucide-react";
+import { Settings, LogOut, ChevronDown } from "lucide-react";
 import { signoutAction } from "@/app/actions";
 
 interface UserDropdownProps {
@@ -63,14 +63,6 @@ export function UserDropdown({ firstName, lastName, email }: UserDropdownProps) 
             >
               <Settings className="w-4 h-4 text-slate-400" />
               Account Settings
-            </Link>
-            <Link
-              href="/account#profile"
-              onClick={() => setOpen(false)}
-              className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
-            >
-              <User className="w-4 h-4 text-slate-400" />
-              Edit Profile
             </Link>
           </div>
 

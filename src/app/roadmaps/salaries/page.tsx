@@ -17,7 +17,7 @@ interface SalaryRole {
   ukMid: string;
   germanyMid: string;
   canadaMid: string;
-  indiaMid: string;
+  europeMid: string;
   demand: string;
   demandKey: "very-high" | "high" | "medium";
   yoyGrowth: string;
@@ -37,7 +37,7 @@ const ROLES: SalaryRole[] = [
     ukMid: "£70k",
     germanyMid: "€75k",
     canadaMid: "C$110k",
-    indiaMid: "₹18L",
+    europeMid: "€62k",
     demand: "🔥 Very High",
     demandKey: "very-high",
     yoyGrowth: "+22%",
@@ -54,7 +54,7 @@ const ROLES: SalaryRole[] = [
     ukMid: "£90k",
     germanyMid: "€95k",
     canadaMid: "C$140k",
-    indiaMid: "₹28L",
+    europeMid: "€82k",
     demand: "🔥 Very High",
     demandKey: "very-high",
     yoyGrowth: "+28%",
@@ -71,7 +71,7 @@ const ROLES: SalaryRole[] = [
     ukMid: "£85k",
     germanyMid: "€90k",
     canadaMid: "C$130k",
-    indiaMid: "₹25L",
+    europeMid: "€78k",
     demand: "🔥 Very High",
     demandKey: "very-high",
     yoyGrowth: "+35%",
@@ -88,7 +88,7 @@ const ROLES: SalaryRole[] = [
     ukMid: "£90k",
     germanyMid: "€95k",
     canadaMid: "C$140k",
-    indiaMid: "₹22L",
+    europeMid: "€85k",
     demand: "🔥 Very High",
     demandKey: "very-high",
     yoyGrowth: "+25%",
@@ -105,7 +105,7 @@ const ROLES: SalaryRole[] = [
     ukMid: "£85k",
     germanyMid: "€88k",
     canadaMid: "C$130k",
-    indiaMid: "₹20L",
+    europeMid: "€76k",
     demand: "📈 High",
     demandKey: "high",
     yoyGrowth: "+30%",
@@ -122,7 +122,7 @@ const ROLES: SalaryRole[] = [
     ukMid: "£95k",
     germanyMid: "€100k",
     canadaMid: "C$150k",
-    indiaMid: "₹30L",
+    europeMid: "€92k",
     demand: "🔥 Very High",
     demandKey: "very-high",
     yoyGrowth: "+45%",
@@ -139,7 +139,7 @@ const ROLES: SalaryRole[] = [
     ukMid: "£75k",
     germanyMid: "€80k",
     canadaMid: "C$120k",
-    indiaMid: "₹22L",
+    europeMid: "€72k",
     demand: "📈 High",
     demandKey: "high",
     yoyGrowth: "+20%",
@@ -156,7 +156,7 @@ const ROLES: SalaryRole[] = [
     ukMid: "£78k",
     germanyMid: "€82k",
     canadaMid: "C$120k",
-    indiaMid: "₹20L",
+    europeMid: "€74k",
     demand: "📈 High",
     demandKey: "high",
     yoyGrowth: "+18%",
@@ -173,7 +173,7 @@ const ROLES: SalaryRole[] = [
     ukMid: "£78k",
     germanyMid: "€82k",
     canadaMid: "C$120k",
-    indiaMid: "₹20L",
+    europeMid: "€74k",
     demand: "📈 High",
     demandKey: "high",
     yoyGrowth: "+15%",
@@ -190,7 +190,7 @@ const ROLES: SalaryRole[] = [
     ukMid: "£68k",
     germanyMid: "€72k",
     canadaMid: "C$105k",
-    indiaMid: "₹16L",
+    europeMid: "€62k",
     demand: "📊 Medium",
     demandKey: "medium",
     yoyGrowth: "+8%",
@@ -256,7 +256,7 @@ export default async function SalariesPage({
         <section className="mb-10">
           <div className="inline-flex items-center gap-2 bg-green-50 dark:bg-green-950/40 text-green-700 dark:text-green-300 text-xs font-semibold px-3 py-1.5 rounded-full mb-4 border border-green-200 dark:border-green-800">
             <DollarSign className="w-3.5 h-3.5" />
-            2024–2025 Market Data
+            2025–2026 Market Data
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-8">
             <div>
@@ -267,7 +267,7 @@ export default async function SalariesPage({
                 </span>
               </h1>
               <p className="text-slate-500 dark:text-slate-400 text-base sm:text-lg mb-4">
-                Real-world salary ranges for {ROLES.length} tech roles across USA, UK, Germany, Canada, and India. Based on 2024–2025 market data.
+                Real-world salary ranges for {ROLES.length} tech roles across USA, UK, Germany, Canada, and Europe. Based on 2025–2026 market data.
               </p>
               <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/60 rounded-xl px-3 py-2">
                 <span>💡</span>
@@ -352,23 +352,23 @@ export default async function SalariesPage({
                         <th className="text-right py-2 px-2 font-bold text-slate-500 dark:text-slate-400 text-[11px]">🇬🇧 UK</th>
                         <th className="text-right py-2 px-2 font-bold text-slate-500 dark:text-slate-400 text-[11px]">🇩🇪 Germany</th>
                         <th className="text-right py-2 px-2 font-bold text-slate-500 dark:text-slate-400 text-[11px]">🇨🇦 Canada</th>
-                        <th className="text-right py-2 pl-2 font-bold text-slate-500 dark:text-slate-400 text-[11px]">🇮🇳 India</th>
+                        <th className="text-right py-2 pl-2 font-bold text-slate-500 dark:text-slate-400 text-[11px]">🇪🇺 Europe</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-50 dark:divide-slate-800/60">
                       {[
-                        { level: "Entry", usa: role.usaEntry, uk: "—", de: "—", ca: "—", in: "—" },
-                        { level: "Mid", usa: role.usaMid, uk: role.ukMid, de: role.germanyMid, ca: role.canadaMid, in: role.indiaMid },
-                        { level: "Senior", usa: role.usaSenior, uk: "~" + role.ukMid.replace(/[£€C$₹]/g, "") + " (est.)", de: "~" + role.germanyMid + " (est.)", ca: "~" + role.canadaMid + " (est.)", in: "~" + role.indiaMid + " (est.)" },
-                        { level: "Lead/Staff", usa: role.usaLead, uk: "—", de: "—", ca: "—", in: "—" },
-                      ].map(({ level, usa, uk, de, ca }) => (
+                        { level: "Entry", usa: role.usaEntry, uk: "—", de: "—", ca: "—", eu: "—" },
+                        { level: "Mid", usa: role.usaMid, uk: role.ukMid, de: role.germanyMid, ca: role.canadaMid, eu: role.europeMid },
+                        { level: "Senior", usa: role.usaSenior, uk: "~" + role.ukMid.replace(/[£€C$]/g, "") + " (est.)", de: "~" + role.germanyMid + " (est.)", ca: "~" + role.canadaMid + " (est.)", eu: "~" + role.europeMid + " (est.)" },
+                        { level: "Lead/Staff", usa: role.usaLead, uk: "—", de: "—", ca: "—", eu: "—" },
+                      ].map(({ level, usa, uk, de, ca, eu }) => (
                         <tr key={level}>
                           <td className="py-2.5 pr-4 font-semibold text-slate-700 dark:text-slate-200">{level}</td>
                           <td className="py-2.5 px-2 text-right font-bold text-green-600 dark:text-green-400">{usa}</td>
                           <td className="py-2.5 px-2 text-right text-slate-600 dark:text-slate-300">{uk}</td>
                           <td className="py-2.5 px-2 text-right text-slate-600 dark:text-slate-300">{de}</td>
                           <td className="py-2.5 px-2 text-right text-slate-600 dark:text-slate-300">{ca}</td>
-                          <td className="py-2.5 pl-2 text-right text-slate-600 dark:text-slate-300">{role.indiaMid}</td>
+                          <td className="py-2.5 pl-2 text-right text-slate-600 dark:text-slate-300">{eu}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -393,8 +393,8 @@ export default async function SalariesPage({
         <div className="mt-8 bg-slate-100 dark:bg-slate-800/60 rounded-2xl p-5 text-sm text-slate-500 dark:text-slate-400">
           <p className="font-semibold text-slate-700 dark:text-slate-200 mb-1">📌 Salary Data Notes</p>
           <ul className="space-y-1 text-xs list-disc list-inside">
-            <li>Salaries are approximate 2024–2025 market data from LinkedIn, Glassdoor, Levels.fyi, and industry surveys.</li>
-            <li>INR figures represent annual CTC (Cost to Company) packages.</li>
+            <li>Salaries are approximate 2025–2026 market data from LinkedIn, Glassdoor, Levels.fyi, and industry surveys.</li>
+            <li>Europe figures represent average mid-level salaries across major tech hubs (Netherlands, France, Spain, Poland, etc.).</li>
             <li>USA figures do not include equity/RSU which can add 30–100%+ for senior roles at top companies.</li>
             <li>Remote DevOps/Cloud roles command a 10–20% premium over on-site equivalents.</li>
             <li>Estimates marked with ~ are extrapolated from mid-level data and may vary significantly.</li>
